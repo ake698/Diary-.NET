@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>7a31e2ee-411a-47f7-ba59-7ecf67e4597c</UserSecretsId>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\C#\NETCOREApi\NETCOREApi\NETCOREApi.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="新文件夹1\**" />
+    <Compile Remove="新文件夹2\**" />
+    <Content Remove="新文件夹1\**" />
+    <Content Remove="新文件夹2\**" />
+    <EmbeddedResource Remove="新文件夹1\**" />
+    <EmbeddedResource Remove="新文件夹2\**" />
+    <None Remove="新文件夹1\**" />
+    <None Remove="新文件夹2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.2" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
+  </ItemGroup>
+
+
+</Project>

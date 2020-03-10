@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NETCOREApi</name>
+    </assembly>
+    <members>
+        <member name="M:NETCOREApi.Controllers.DairyController.Delete(System.Int64)">
+            <summary>
+            Deletes a specific Diary.
+            </summary>
+            <param name="id"></param>
+        </member>
+    </members>
+</doc>
