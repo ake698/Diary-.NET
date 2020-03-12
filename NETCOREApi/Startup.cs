@@ -15,6 +15,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using NETCOREApi.Filtrers;
 using NETCOREApi.Utils;
 
 namespace NETCOREApi
@@ -61,7 +62,10 @@ namespace NETCOREApi
                     .AllowAnyHeader();
                 });
             });
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(new HttpResponseExceptionFilter());
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -94,6 +98,7 @@ namespace NETCOREApi
                     dirName),
                 RequestPath = new Microsoft.AspNetCore.Http.PathString("/static")
             });
+            app.UseExceptionHandler("/error");
             //Swag ÅäÖÃ
             app.UseSwagger();
             app.UseSwaggerUI(c =>

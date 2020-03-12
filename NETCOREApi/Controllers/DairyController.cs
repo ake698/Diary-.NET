@@ -93,6 +93,27 @@ namespace NETCOREApi.Controllers
             return ModelToDtoUtil.GetDiaryWithPageInfoDto(dto, pageInfo);
         }
 
+        [HttpGet("/api/search")]
+        public ActionResult<DiaryWithPageInfoDto> GetDiaryByKey([FromQuery] PageDto pageInfo)
+        {
+            //User user = GetCurrentUser();
+            //Console.WriteLine(user.Id);
+            string key =pageInfo.Key == null ? "" : pageInfo.Key;
+            var diaries = _context.Diary.Include(q => q.User)
+                .Where(p => p.IsPublic == true)
+                .Where(k => k.Title.Contains(key) || k.Content.Contains(key));
+            pageInfo.Total = diaries.Count();
+            var result = diaries
+                .OrderByDescending(t => t.CreateTime)
+                .Skip(pageInfo.PageSize * (pageInfo.PageIndex - 1))
+                .Take(pageInfo.PageSize)
+                .ToList();
+            List<DiaryUserDto> dto = new List<DiaryUserDto>();
+            result.ForEach(d => dto.Add(ModelToDtoUtil.GetDiaryUserDto(d, d.User)));
+            //_context.Diary.Include(q => q.User).ToList()
+            return ModelToDtoUtil.GetDiaryWithPageInfoDto(dto, pageInfo);
+        }
+
         // POST api/<controller>
         [HttpPost]
         public  ActionResult<DiaryUserDto> Post([FromBody]Diary diary)

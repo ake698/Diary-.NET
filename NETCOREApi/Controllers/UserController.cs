@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using NETCOREApi.Dto;
 using NETCOREApi.Models;
 using NETCOREApi.Utils;
+using NETCOREApi.Exceptions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,6 +38,10 @@ namespace NETCOREApi.Controllers
         [HttpGet]
         public void Get()
         {
+            throw new HttpResponseException()
+            {
+                Value = "nononon"
+            };
         }
 
         // POST api/<controller>

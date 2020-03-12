@@ -10,5 +10,7 @@ namespace NETCOREApi.Dto
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
         public int Total { get; set; }
+
+        public string Key { get; set; }
     }
 }
